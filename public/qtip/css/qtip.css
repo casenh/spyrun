@@ -1,0 +1,53 @@
+#qtip {
+  display: none;
+  margin-bottom: 15px;
+  position: absolute;
+}
+#qtip.visible {
+  display: block;
+}
+#qtip:before {
+  content: "\25be";
+  font-size: 30px;
+  line-height: 2px;
+  margin-left: -10px;
+  position: absolute;
+  left: 50%;
+  top: 100%;
+}
+#qtip {
+  background: #fff;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+  color: #000;
+  display: block;
+  font-size: 18px;
+  opacity: 0;
+  padding: 10px 14px;
+  -webkit-transition: 0.2s linear;
+  -webkit-transition-property: opacity, -webkit-transform;
+}
+#qtip.visible {
+  opacity: 1;
+  -webkit-animation: Grow 0.3s;
+}
+#qtip:before {
+  color: #fff;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
+@-webkit-keyframes Grow {
+  0% {
+    -webkit-transform: scale(0.7);
+  }
+
+  40% {
+    -webkit-transform: scale(1.2);
+  }
+
+  70% {
+    -webkit-transform: scale(0.9);
+  }
+
+  100% {
+    -webkit-transform: scale(1);
+  }
+}

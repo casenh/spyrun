@@ -1,0 +1,96 @@
+.patientTable {
+	margin:0px 0px 30px 0px;
+	padding:0px 0px 10px 0px;
+	width:100%;
+	box-shadow: 10px 10px 5px #888888;
+	border:1px solid #000000;
+	
+	-moz-border-radius-bottomleft:0px;
+	-webkit-border-bottom-left-radius:0px;
+	border-bottom-left-radius:0px;
+	
+	-moz-border-radius-bottomright:0px;
+	-webkit-border-bottom-right-radius:0px;
+	border-bottom-right-radius:0px;
+	
+	-moz-border-radius-topright:0px;
+	-webkit-border-top-right-radius:0px;
+	border-top-right-radius:0px;
+	
+	-moz-border-radius-topleft:0px;
+	-webkit-border-top-left-radius:0px;
+	border-top-left-radius:0px;
+}.patientTable table{
+    border-collapse: collapse;
+        border-spacing: 0;
+	width:100%;
+	height:100%;
+	margin:0px;padding:0px;
+}.patientTable tr:last-child td:last-child {
+	-moz-border-radius-bottomright:0px;
+	-webkit-border-bottom-right-radius:0px;
+	border-bottom-right-radius:0px;
+}
+.patientTable table tr:first-child td:first-child {
+	-moz-border-radius-topleft:0px;
+	-webkit-border-top-left-radius:0px;
+	border-top-left-radius:0px;
+}
+.patientTable table tr:first-child td:last-child {
+	-moz-border-radius-topright:0px;
+	-webkit-border-top-right-radius:0px;
+	border-top-right-radius:0px;
+}.patientTable tr:last-child td:first-child{
+	-moz-border-radius-bottomleft:0px;
+	-webkit-border-bottom-left-radius:0px;
+	border-bottom-left-radius:0px;
+}.patientTable tr:hover td{
+	
+}
+.patientTable tr:nth-child(odd){ background-color:#c4e1ff; }
+.patientTable tr:nth-child(even)    { background-color:#ffffff; }.patientTable td{
+	vertical-align:middle;
+	
+	
+	border:1px solid #000000;
+	border-width:0px 1px 1px 0px;
+	text-align:left;
+	padding:7px;
+	font-size:15px;
+	font-family:Arial;
+	font-weight:normal;
+	color:#000000;
+}.patientTable tr:last-child td{
+	border-width:0px 1px 0px 0px;
+}.patientTable tr td:last-child{
+	border-width:0px 0px 1px 0px;
+}.patientTable tr:last-child td:last-child{
+	border-width:0px 0px 0px 0px;
+}
+.patientTable tr:first-child td{
+		background:-o-linear-gradient(bottom, #0000bf 5%, #005fbf 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #0000bf), color-stop(1, #005fbf) );
+	background:-moz-linear-gradient( center top, #0000bf 5%, #005fbf 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#0000bf", endColorstr="#005fbf");	background: -o-linear-gradient(top,#0000bf,005fbf);
+
+	background-color:#0000ff;
+	border:0px solid #000000;
+	text-align:center;
+	border-width:0px 0px 1px 1px;
+	font-size:20px;
+	font-family:Arial;
+	font-weight:bold;
+	color:#ffffff;
+}
+/*.patientTable tr:first-child:hover td{
+	background:-o-linear-gradient(bottom, #0000ff 5%, #007fff 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #0000ff), color-stop(1, #007fff) );
+	background:-moz-linear-gradient( center top, #0000ff 5%, #007fff 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#0000ff", endColorstr="#007fff");	background: -o-linear-gradient(top,#0000ff,007fff);
+
+	background-color:#0000ff;
+}*/
+.patientTable tr:first-child td:first-child{
+	border-width:0px 0px 1px 0px;
+}
+.patientTable tr:first-child td:last-child{
+	border-width:0px 0px 1px 1px;
+}

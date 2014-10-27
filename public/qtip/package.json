@@ -1,0 +1,62 @@
+{
+  "name": "qtip",
+  "version": "0.0.4",
+  "description": "pretty, mobile-friendly tooltips",
+  "main": "qtip.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:eighttrackmind/qtip.git"
+  },
+  "keywords": [
+    "tooltip",
+    "popup",
+    "tip",
+    "help",
+    "hover",
+    "ios",
+    "android",
+    "mobile",
+    "interface",
+    "ui"
+  ],
+  "author": {
+    "name": "Boris Cherny",
+    "email": "boris@performancejs.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eighttrackmind/qtip/issues"
+  },
+  "devDependencies": {
+    "grunt-umd": "~1.3.0",
+    "grunt-contrib-uglify": "~0.2.4",
+    "grunt": "~0.4.1",
+    "grunt-contrib-coffee": "~0.7.0",
+    "stylus": "~0.38.0"
+  },
+  "readme": "qtip\n===========================\n\npretty, mobile-friendly tooltips.\n\n![screenshot](http://i.imgur.com/z0KmBrE.png)\n\n## demo\n\nhttp://performancejs.com/qtip/demo/\n\n## features\n\n- tiny (.5k gzipped), no dependencies\n- pretty, stylable via CSS\n- semantic (augments existing `title` attributes), uses CSS for styling\n- supported environments: AMD, CommonJS, browser globals\n\n## usage\n\ninstallation is nearly drop-in. just add empty `data-qtip` attributes to any elements with existing `title` attributes that you'd like to style. then attach `qtip.js` to the bottom of your page (it will self-initialize).\n\n```html\n<html>\n\t<head>\n\t\t...\n\t</head>\n\t<body>\n\n\t\t<span title=\"some text here\" data-qtip></span>\n\n\t\t<a title=\"more text\" data-qtip href=\"#\"></span>\n\n\t\t...\n\n\t\t<script src=\"qtip.js\"></script>\n\n\t</body>\n</html>\n```\n\n## building it yourself\n\n```bash\n# install build dependencies\nnpm install\n\n# build css\nstylus stylus --out css\n\n# build js\ngrunt\n```\n\n## browser api requirements:\n\n- `addEventListener` ([mdn](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget.addEventListener#Browser_compatibility))\n- `classList` ([caniuse](http://caniuse.com/#feat=classlist))\n- `querySelectorAll` ([caniuse](http://caniuse.com/#search=querySelectorAll))",
+  "readmeFilename": "README.md",
+  "_id": "qtip@0.0.4",
+  "dist": {
+    "shasum": "f6a359e665dc48eb43921435cab7ebf71a56211d",
+    "tarball": "http://registry.npmjs.org/qtip/-/qtip-0.0.4.tgz"
+  },
+  "_from": "qtip@",
+  "_npmVersion": "1.3.2",
+  "_npmUser": {
+    "name": "bcherny",
+    "email": "bcherny@gmail.com"
+  },
+  "maintainers": [
+    {
+      "name": "bcherny",
+      "email": "bcherny@gmail.com"
+    }
+  ],
+  "directories": {},
+  "_shasum": "f6a359e665dc48eb43921435cab7ebf71a56211d",
+  "_resolved": "https://registry.npmjs.org/qtip/-/qtip-0.0.4.tgz"
+}

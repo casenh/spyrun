@@ -1,0 +1,37 @@
+html, body {
+  width: 100%;
+  margin: 0px;
+  padding: 0px 0px 0px 0px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+#username {
+  padding-right: 5px;
+}
+
+#password {
+  padding-right: 9px;
+}
+
+.loginTabContainer {
+  background: black;
+  padding: 73px 15px 0px 15px;
+}
+
+.heading {
+  background: black;
+}
+
+.loginTopBar {
+  background: #000099;
+  padding: 30px 15px 0px 15px;
+}
+
+.logo {
+  padding: 10px 15px 0px 15px;
+  height: 150px;
+}

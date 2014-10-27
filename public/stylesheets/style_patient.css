@@ -1,0 +1,140 @@
+html, body {
+  width: 100%;
+  margin: 0px;
+  padding: 0px 0px 0px 0px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+h1 {
+  font-size: 20pt;
+  font-style: Arial;
+  font-weight: bold;
+  color: black;
+  text-shadow: 1px 1px 1px #888888;
+}
+
+div.header {
+  color: red;
+  overflow: auto;
+}
+
+.welcomeBanner {
+  font-family: 'Corben', Georgia, Times, serif;
+  font-size: 25px;
+}
+
+.topBar {
+  background: #000099;
+}
+
+.logo {
+  height: 100px;
+  float: left;
+}
+
+.status {
+  padding-top: 10px;
+  float: right;
+}
+
+.tabContainer {
+  width: 100%;
+  padding: 73px 15px 0px 15px;
+  background: black/*#000099*/;
+}
+
+span#userLoggedInAs {
+  padding-right: 5px;
+  border-right: thin solid white;
+  color: white;
+}
+
+span#userLogOut {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+ul.topTab {
+  list-style-type: none;
+  width: 100%;
+  position: center;
+  height: 27px;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+  padding: 0px 0 0 300px;
+}
+
+li.topTab {
+  white-space: nowrap;
+}
+
+/*ul#topTab li {
+  display: block;
+  float: left;
+  margin: 0 0 0 8px;
+  height: 27px;
+  text-shadow: 0px 1px 1px 1px #888888;
+  box-shadow: 0px 0px 0px 0px #888888;
+}
+
+ul#topTab li.left {
+  margin: 0;
+}*/
+
+ul.topTab li a {
+  /*display: block;*/
+  float: left;
+  color: #fff;
+  background: #00007A;
+  line-height: 27px;
+  text-decoration: none;
+  padding: 0px 17px 10px 18px;
+  height: 27px;
+  font-size: 21px;
+  margin: 0px 20px 0px 0px;
+}
+
+ul.topTab li a:hover {
+  background: #1919A3 /*#2E4560*/;
+}
+
+ul.topTab li a#current {
+  color: #2E4560;
+  background: white;
+  color: black;
+  box-shadow: 0px 0px 0px #888888;
+}
+
+/*ul#topTab li a.current:hover {
+  color: #2E4560;
+  background: #fff;
+}*/
+
+div.lowerBody {
+  border-top: 0px solid black;
+  padding: 20px;
+  margin: 15px;
+}
+
+div.bodyBox {
+  width: 50%;
+  align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+div.tabBox {
+  width: 20%;
+  float: left;
+  text-align: left;
+}
+
+#cityLabel1 {
+  margin-left: -180px;
+}
+

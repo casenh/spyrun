@@ -1,0 +1,215 @@
+html, body {
+  width: 100%;
+  margin: 0px;
+  padding: 0px 0px 0px 0px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+h1 {
+  font-size: 20pt;
+  font-style: Arial;
+  font-weight: bold;
+  color: black;
+  text-shadow: 1px 1px 1px #888888;
+}
+
+div.header {
+  color: red;
+  overflow: auto;
+}
+
+.welcomeBanner {
+  font-family: 'Corben', Georgia, Times, serif;
+  font-size: 25px;
+}
+
+.topBar {
+  background: #000099;
+}
+
+.logo {
+  height: 100px;
+  float: left;
+}
+
+.status {
+  padding-top: 10px;
+  float: right;
+}
+
+.tabContainer {
+  width: 100%;
+  padding: 73px 15px 0px 15px;
+  background: black/*#000099*/;
+}
+
+span#userLoggedInAs {
+  padding-right: 5px;
+  border-right: thin solid white;
+  color: white;
+}
+
+span#userLogOut {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+ul.topTab {
+  list-style-type: none;
+  width: 100%;
+  position: center;
+  height: 27px;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+  padding: 0px 0 0 300px;
+}
+
+li.topTab {
+  white-space: nowrap;
+}
+
+/*ul#topTab li {
+  display: block;
+  float: left;
+  margin: 0 0 0 8px;
+  height: 27px;
+  text-shadow: 0px 1px 1px 1px #888888;
+  box-shadow: 0px 0px 0px 0px #888888;
+}
+
+ul#topTab li.left {
+  margin: 0;
+}*/
+
+ul.topTab li a {
+  /*display: block;*/
+  float: left;
+  color: #fff;
+  background: #00007A;
+  line-height: 27px;
+  text-decoration: none;
+  padding: 0px 17px 10px 18px;
+  height: 27px;
+  font-size: 21px;
+  margin: 0px 20px 0px 0px;
+}
+
+ul.topTab li a:hover {
+  background: #1919A3 /*#2E4560*/;
+}
+
+ul.topTab li a#current {
+  color: #2E4560;
+  background: white;
+  color: black;
+  box-shadow: 0px 0px 0px #888888;
+}
+
+/*ul#topTab li a.current:hover {
+  color: #2E4560;
+  background: #fff;
+}*/
+
+div.lowerBody {
+  border-top: 0px solid black;
+  padding: 20px;
+  margin: 15px;
+}
+
+div.bodyBox {
+  width: 50%;
+  align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+div.tabBox {
+  width: 20%;
+  float: left;
+  text-align: left;
+}
+
+a.tab {
+  font-size: 20px;
+  padding: 0px 100px 0px 0px;
+}
+
+label#patientInputBox {
+  padding: 0px 10px 10px 0px;
+}
+
+#patientInputBox {
+  margin: 0px;
+  padding: 10px 30px 10px 10px;
+}
+
+p.patientInputBox#body {
+  border: 0px solid black;
+}
+
+.patientForm {
+  border: 0px solid black;
+  padding: 10px 10px 10px 10px
+}
+
+label#patientName {
+  padding: 0px 91px 0px 0px;
+}
+
+label#birthdate {
+  padding: 0px 22px 0px 0px;
+}
+
+label#gender {
+  padding: 0px 133px 0px 0px;
+}
+
+button#newPatient {
+  margin: 10px 0px 0px 0px;
+}
+
+label#inputBox {
+  display: inline-block;
+  clear: left;
+}
+
+p#patientBoxHeader {
+  text-shadow: 1px 1px 1px #888888;
+  padding: 7px;
+  background-color: #0000ff;
+  text-align:left;
+  border-width:0px 0px 1px 1px;
+  font-size:20px;
+  font-family:Arial;
+  font-weight:bold;
+  color:#ffffff;
+  position: relative;
+  background:-o-linear-gradient(bottom, #0000bf 5%, #005fbf 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #0000bf), color-stop(1, #005fbf) );
+	background:-moz-linear-gradient( center top, #0000bf 5%, #005fbf 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#0000bf", endColorstr="#005fbf");	background: -o-linear-gradient(top,#0000bf,005fbf);
+  top: 0px;
+}
+
+div#patientBox {
+  padding: 0px 0px 30px 0px;
+}
+
+table#addUserBox {
+  margin: 0px;
+  border: 1px solid black;
+  padding: 10px 10px 10px 10px;
+  width: 100%;
+}
+
+button#addEncounter {
+  margin: 0px 10px 10px 10px;
+}
+
+.ng-table {
+	border: 1px solid #000;
+}

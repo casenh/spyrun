@@ -1,0 +1,22 @@
+
+$arrow = 10px
+
+#qtip
+	display none
+	margin-bottom 15px
+	position absolute
+
+	&.visible
+		display block
+
+	// arrow
+	&:before
+		content "\25be"
+		font-size $arrow*3
+		line-height 2px
+		margin-left -($arrow)
+		position absolute
+		left 50%
+		top 100%
+
+@import "theme.styl"
