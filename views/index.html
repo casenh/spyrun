@@ -15,28 +15,169 @@
 <body>
     <script>
 
-    var stage = new PIXI.Stage();
-var renderer = new PIXI.autoDetectRenderer(1024, 768, null, true, true);
-//var renderer = new PIXI.CanvasRenderer(1024, 768, null, true, true);
-document.body.appendChild(renderer.view);
+	/* Set a timeout for animation */
+	var spriteNum = 1;
+	var timeout = 0;
+	// create an new instance of a pixi stage with a grey background
+	var stage = new PIXI.Stage(0x888888);
+	// create a renderer instance width=640 height=480
+	var renderer = PIXI.autoDetectRenderer(640,480);
+	// importing a texture atlas created with texturepacker
+	var tileAtlas = ["/images/link.json"];
+	// create a new loader
+	var loader = new PIXI.AssetLoader(tileAtlas);
+	// create an empty container
+	var gameContainer = new PIXI.DisplayObjectContainer();
+	// add the container to the stage
+	stage.addChild(gameContainer);
+	// add the renderer view element to the DOM
+	document.body.appendChild(renderer.view);
+	// use callback
+	loader.onComplete = onTilesLoaded
+	//begin load
+	loader.load();	
+	
+	// importing a texture atlas created with texturepacker
+	var bground = ["/images/background.json"];
+	// create a new loader
+	var loader = new PIXI.AssetLoader(bground);
 
-var imgUrl = 'http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Ski_trail_rating_symbol-blue_square.svg/600px-Ski_trail_rating_symbol-blue_square.svg.png';
+	var loader_new = new PIXI.AssetLoader(bground);
+	loader_new.onComplete = test;
+	loader_new.load();
 
-var sprite = PIXI.Sprite.fromImage(imgUrl);
-sprite.position.set(0, 0);
-sprite.pivot.set(sprite.width/2, sprite.height/2);
+	function test() {
+		/* This can be empty for now since it is taken care of below */
+	}
 
-stage.addChild(sprite);
+	var character;	
+
+	function onTilesLoaded(){
+
+		/* Get the background image */
+		var background = PIXI.Sprite.fromImage("/images/background.png");
+		gameContainer.addChild(background);
 
 
-requestAnimFrame(animate);
-function animate() {
-    requestAnimFrame(animate);
-   
-    sprite.rotation += 0.1;
-    
-    renderer.render(stage);
-}
+		/* Get the main character sprite */
+		character = PIXI.Sprite.fromFrame(2);
+		character.buttonMode = true;
+		character.interactive = true;
+
+		/* Set the character's starting position */
+		character.position.x = 50;
+		character.position.y = 50;
+
+		/* Add the character to the screen */
+		gameContainer.addChild(character);
+
+		/* Add the event listeners for the button pushes */
+		document.addEventListener('keydown', function(event) {
+			/* Left */
+			if(event.keyCode == 37) {
+				character.position.set(character.position.x-5, character.position.y);
+			}
+			/* Up */
+			if(event.keyCode == 38) {
+				character.position.set(character.position.x, character.position.y-5);			
+			}
+			/* Right */
+			if(event.keyCode == 39) {
+				character.position.set(character.position.x+5, character.position.y);
+			}
+			/* Down */
+			if(event.keyCode == 40) {
+				character.position.set(character.position.x, character.position.y+5);
+			}
+		});
+		
+		character.mousedown = character.touchstart = function(data) {
+
+			gameContainer.removeChild(this);
+			var character = PIXI.Sprite.fromFrame(1);
+			gameContainer.addChild(character);
+
+		}		
+
+
+		requestAnimFrame(animate);
+	}
+	function animate() {
+
+		requestAnimFrame(animate);
+
+		timeout++;
+		if((timeout%25) == 0) {	
+
+			if(spriteNum > 3)
+				spriteNum = 0;
+	
+			var orig = gameContainer.getChildAt(1);
+			character = PIXI.Sprite.fromFrame(spriteNum+1);
+
+			character.position.x = orig.position.x;
+			character.position.y = orig.position.y;
+
+			gameContainer.removeChild(orig);
+			gameContainer.addChild(character);
+			gameContainer.setChildIndex(character, 1);
+
+			spriteNum++;
+		}
+
+
+
+		renderer.render(stage);
+	}
+
+
+
+
+
+
+//	var renderer = new PIXI.CanvasRenderer(1024, 768, null, true, true);
+//	document.body.appendChild(renderer.view);	
+//	//var imgUrl = 'http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Ski_trail_rating_symbol-blue_square.svg/600px-Ski_trail_rating_symbol-blue_square.svg.png';
+////
+////
+////
+////
+////	
+//	var sprite = PIXI.Sprite.fromImage(imgUrl);
+//	sprite.position.set(50, 50);
+//	sprite.pivot.set(sprite.width/2, sprite.height/2);
+//	
+//	stage.addChild(sprite);
+//
+//	/* Register key movements for the player */	
+//	document.addEventListener('keydown', function(event) {
+//		/* Left */
+//		if(event.keyCode == 37) {
+//		    sprite.position.set(sprite.x-5,sprite.y);
+//		}
+//		/* Up */
+//		if(event.keyCode == 38) {
+//			sprite.position.set(sprite.x,sprite.y-5);
+//		}
+//		/* Right */
+//		if(event.keyCode == 39) {
+//			sprite.position.set(sprite.x+5,sprite.y);
+//		}
+//		/* Down */
+//		if(event.keyCode == 40) {
+//			sprite.position.set(sprite.x,sprite.y+5);
+//		}
+//	});
+//
+//
+//	requestAnimFrame(animate);
+//	function animate() {
+//	    requestAnimFrame(animate);
+//	   
+//	   // sprite.rotation += 0.1;
+//	    
+//	    renderer.render(stage);
+//	}
 
     </script>
 
