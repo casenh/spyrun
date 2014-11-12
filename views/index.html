@@ -10,10 +10,18 @@
         }
     </style>
     <script src="/bin/pixi.dev.js"></script>
+	<script src="/bin/gameboard.js"> </script>
+
 
 </head>
 <body>
+
+	<input type="button" onclick="testing()" value="test" />
     <script>
+
+	/* Globals */
+	var HEIGHT = 480;
+	var WIDTH = 640;
 
 	/* Set a timeout for animation */
 	var spriteNum = 1;
@@ -21,7 +29,7 @@
 	// create an new instance of a pixi stage with a grey background
 	var stage = new PIXI.Stage(0x888888);
 	// create a renderer instance width=640 height=480
-	var renderer = PIXI.autoDetectRenderer(640,480);
+	var renderer = PIXI.autoDetectRenderer(WIDTH,HEIGHT);
 	// importing a texture atlas created with texturepacker
 	var tileAtlas = ["/images/link.json"];
 	// create a new loader
@@ -42,6 +50,10 @@
 	// create a new loader
 	var loader = new PIXI.AssetLoader(bground);
 
+	/* Create the game board */
+	var gameBoard = initializeGameBoard();
+	
+	/* Finally load the assests */
 	var loader_new = new PIXI.AssetLoader(bground);
 	loader_new.onComplete = test;
 	loader_new.load();
@@ -58,7 +70,6 @@
 		var background = PIXI.Sprite.fromImage("/images/background.png");
 		gameContainer.addChild(background);
 
-
 		/* Get the main character sprite */
 		character = PIXI.Sprite.fromFrame(2);
 		character.buttonMode = true;
@@ -73,6 +84,7 @@
 
 		/* Add the event listeners for the button pushes */
 		document.addEventListener('keydown', function(event) {
+			
 			/* Left */
 			if(event.keyCode == 37) {
 				character.position.set(character.position.x-5, character.position.y);
@@ -83,14 +95,27 @@
 			}
 			/* Right */
 			if(event.keyCode == 39) {
-				character.position.set(character.position.x+5, character.position.y);
+				/* First make sure we aren't colliding with a wall */
+				if(gameBoard[character.position.y][character.position.x+5] == 0) {
+					character.position.set(character.position.x+5, character.position.y);
+				}
 			}
 			/* Down */
 			if(event.keyCode == 40) {
 				character.position.set(character.position.x, character.position.y+5);
 			}
 		});
-		
+
+		/* Draw a rectangle test */
+		var graphics = new PIXI.Graphics();
+		graphics.beginFill(0x00FF00);
+		graphics.moveTo(0,0);
+		graphics.lineTo(-50,100);
+		graphics.lineTo(50,100);
+		graphics.endFill();
+		gameContainer.addChild(graphics);
+	
+
 		character.mousedown = character.touchstart = function(data) {
 
 			gameContainer.removeChild(this);

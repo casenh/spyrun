@@ -1456,7 +1456,7 @@ PIXI.DisplayObject.prototype._generateCachedSprite = function()
 
     if(!this._cachedSprite)
     {
-        var renderTexture = new PIXI.RenderTexture(bounds.width | 0, bounds.height | 0);//, renderSession.renderer);
+        var renderTexture = new PIXI.RenderTexture(bounds.width | 0, bounds.height | 0);//, renderSession.renderer;
 
         this._cachedSprite = new PIXI.Sprite(renderTexture);
         this._cachedSprite.worldTransform = this.worldTransform;
@@ -1511,7 +1511,7 @@ PIXI.DisplayObject.prototype._destroyCachedSprite = function()
 PIXI.DisplayObject.prototype._renderWebGL = function(renderSession)
 {
     // OVERWRITE;
-    // this line is just here to pass jshinting :)
+    // this line is just here to pass jshinting :
     renderSession = renderSession;
 };
 
@@ -1525,7 +1525,7 @@ PIXI.DisplayObject.prototype._renderWebGL = function(renderSession)
 PIXI.DisplayObject.prototype._renderCanvas = function(renderSession)
 {
     // OVERWRITE;
-    // this line is just here to pass jshinting :)
+    // this line is just here to pass jshinting :
     renderSession = renderSession;
 };
 
