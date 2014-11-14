@@ -16,7 +16,6 @@
 
 </head>
 <body>
-	<input type="button" onclick="testing()" value="test" />
     <script>
 
 	/* Globals */
@@ -45,10 +44,6 @@
 	//begin load
 	loader.load();	
 
-
-	var level = JSON.parse(Levels);
-	alert(level.levelMap[0].walls_end[0])
-	
 	// importing a texture atlas created with texturepacker
 	var bground = ["/images/background.json"];
 	// create a new loader
@@ -56,7 +51,10 @@
 
 	/* Create the game board */
 	var gameBoard = initializeGameBoard();
-	
+
+	/* Get the maps object */
+	var levelMaps = JSON.parse(Levels);
+		
 	/* Finally load the assests */
 	var loader_new = new PIXI.AssetLoader(bground);
 	loader_new.onComplete = test;
@@ -74,6 +72,10 @@
 		var background = PIXI.Sprite.fromImage("/images/background.png");
 		gameContainer.addChild(background);
 
+		/* Draw the walls on the screen */
+		var graphics = setWalls(levelMaps);
+		gameContainer.addChild(graphics);
+
 		/* Get the main character sprite */
 		character = PIXI.Sprite.fromFrame(2);
 		character.buttonMode = true;
@@ -86,42 +88,42 @@
 		/* Add the character to the screen */
 		gameContainer.addChild(character);
 
-		/* Draw the walls on the screen */
-		var graphics = setBackground();
-
+		
 		/* Add the event listeners for the button pushes */
 		document.addEventListener('keydown', function(event) {
 			
 			/* Left */
 			if(event.keyCode == 37) {
-				character.position.set(character.position.x-5, character.position.y);
+				character.position.set(character.position.x-2, character.position.y);
 			}
 			/* Up */
 			if(event.keyCode == 38) {
-				character.position.set(character.position.x, character.position.y-5);			
+				character.position.set(character.position.x, character.position.y-2);
 			}
 			/* Right */
 			if(event.keyCode == 39) {
 				/* First make sure we aren't colliding with a wall */
-				if(gameBoard[character.position.y][character.position.x+5] == 0) {
-					character.position.set(character.position.x+5, character.position.y);
+				alert(gameBoard[0][0])
+				alert("x: " + character.position.x + " y: " + character.position.y + " gameBoard: " + gameBoard[character.position.y][character.position.x+2]) 
+				if(gameBoard[character.position.y][character.position.x+2] == 0) {
+					character.position.set(character.position.x+2, character.position.y);
 				}
 			}
 			/* Down */
 			if(event.keyCode == 40) {
-				character.position.set(character.position.x, character.position.y+5);
+				character.position.set(character.position.x, character.position.y+2);
 			}
 		});
 
 			
 
-		character.mousedown = character.touchstart = function(data) {
+	//	character.mousedown = character.touchstart = function(data) {
 
-			gameContainer.removeChild(this);
-			var character = PIXI.Sprite.fromFrame(1);
-			gameContainer.addChild(character);
+	//		gameContainer.removeChild(this);
+	//		var character = PIXI.Sprite.fromFrame(1);
+	//		gameContainer.addChild(character);
 
-		}		
+	//	}		
 
 
 		requestAnimFrame(animate);
@@ -144,7 +146,7 @@
 			/* Get the current character and the one to switch with
 			   and set the new characters location to the same as the one
 			   we're replacing  */	
-			var orig = gameContainer.getChildAt(1);
+			var orig = gameContainer.getChildAt(2);
 			character = PIXI.Sprite.fromFrame(spriteNum+1);
 
 			character.position.x = orig.position.x;
@@ -153,7 +155,7 @@
 			/* Now swap the two characters on the screen */
 			gameContainer.removeChild(orig);
 			gameContainer.addChild(character);
-			gameContainer.setChildIndex(character, 1);
+			gameContainer.setChildIndex(character, 2);
 
 			spriteNum++;
 		}
