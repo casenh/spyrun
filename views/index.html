@@ -11,11 +11,11 @@
     </style>
     <script src="/bin/pixi.dev.js"></script>
 	<script src="/bin/gameboard.js"> </script>
+	<script src="/bin/levels.json"> </script>
 
 
 </head>
 <body>
-
 	<input type="button" onclick="testing()" value="test" />
     <script>
 
@@ -44,6 +44,10 @@
 	loader.onComplete = onTilesLoaded
 	//begin load
 	loader.load();	
+
+
+	var level = JSON.parse(Levels);
+	alert(level.levelMap[0].walls_end[0])
 	
 	// importing a texture atlas created with texturepacker
 	var bground = ["/images/background.json"];
@@ -82,6 +86,9 @@
 		/* Add the character to the screen */
 		gameContainer.addChild(character);
 
+		/* Draw the walls on the screen */
+		var graphics = setBackground();
+
 		/* Add the event listeners for the button pushes */
 		document.addEventListener('keydown', function(event) {
 			
@@ -106,15 +113,7 @@
 			}
 		});
 
-		/* Draw a rectangle test */
-		var graphics = new PIXI.Graphics();
-		graphics.beginFill(0x00FF00);
-		graphics.moveTo(0,0);
-		graphics.lineTo(-50,100);
-		graphics.lineTo(50,100);
-		graphics.endFill();
-		gameContainer.addChild(graphics);
-	
+			
 
 		character.mousedown = character.touchstart = function(data) {
 

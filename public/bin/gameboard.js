@@ -24,6 +24,14 @@ function initializeGameBoard() {
 
 function setBackground() {
 
+	/* Draw a rectangle test */
+	var graphics = new PIXI.Graphics();
+	graphics.beginFill(0x00FF00);
+	graphics.moveTo(0,0);
+	graphics.lineTo(-50,100);
+	graphics.lineTo(50,100);
+	graphics.endFill();
+	gameContainer.addChild(graphics);
 
-
+	return graphics;
 }

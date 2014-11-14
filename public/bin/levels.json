@@ -1,0 +1,5 @@
+var Levels = '{ "levelMap" : [' +
+	'{ "numWalls": 1,' +
+	' "walls_start": [[1,2]],' + 
+	' "walls_end": [[1,2]]}]}';
+
