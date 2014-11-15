@@ -12,6 +12,8 @@
     <script src="/bin/pixi.dev.js"></script>
 	<script src="/bin/gameboard.js"> </script>
 	<script src="/bin/levels.json"> </script>
+	<script src="/bin/character.js"> </script>
+
 
 
 </head>
@@ -25,32 +27,43 @@
 	/* Set a timeout for animation */
 	var spriteNum = 1;
 	var timeout = 0;
+	var character; //Declare character here for global scope
+
 	// create an new instance of a pixi stage with a grey background
 	var stage = new PIXI.Stage(0x888888);
+
 	// create a renderer instance width=640 height=480
-	var renderer = PIXI.autoDetectRenderer(WIDTH,HEIGHT);
+	var renderer = PIXI.autoDetectRenderer(WIDTH, HEIGHT);
+
 	// importing a texture atlas created with texturepacker
 	var tileAtlas = ["/images/link.json"];
+
 	// create a new loader
 	var loader = new PIXI.AssetLoader(tileAtlas);
+
 	// create an empty container
 	var gameContainer = new PIXI.DisplayObjectContainer();
+
 	// add the container to the stage
 	stage.addChild(gameContainer);
+
 	// add the renderer view element to the DOM
 	document.body.appendChild(renderer.view);
+
 	// use callback
 	loader.onComplete = onTilesLoaded
+
 	//begin load
 	loader.load();	
 
 	// importing a texture atlas created with texturepacker
 	var bground = ["/images/background.json"];
+
 	// create a new loader
 	var loader = new PIXI.AssetLoader(bground);
 
 	/* Create the game board */
-	var gameBoard = initializeGameBoard();
+	var gameBoard = new GameBoard();
 
 	/* Get the maps object */
 	var levelMaps = JSON.parse(Levels);
@@ -60,110 +73,98 @@
 	loader_new.onComplete = test;
 	loader_new.load();
 
+
 	function test() {
 		/* This can be empty for now since it is taken care of below */
 	}
 
-	var character;	
+function onTilesLoaded(){
 
-	function onTilesLoaded(){
+	/* Get the background image */
+	var background = PIXI.Sprite.fromImage("/images/background.png");
+	gameContainer.addChild(background);
 
-		/* Get the background image */
-		var background = PIXI.Sprite.fromImage("/images/background.png");
-		gameContainer.addChild(background);
+	/* Draw the walls on the screen */
+	var graphics = gameBoard.setWalls(levelMaps);
+	gameContainer.addChild(graphics);
 
-		/* Draw the walls on the screen */
-		var graphics = setWalls(levelMaps);
-		gameContainer.addChild(graphics);
+	/* Initialize the main character sprite */
+	character = new Character(PIXI.Sprite.fromFrame(2));
 
-		/* Get the main character sprite */
-		character = PIXI.Sprite.fromFrame(2);
-		character.buttonMode = true;
-		character.interactive = true;
+	/* Set the character's starting position */
+	character.setPosition(50, 50);
 
-		/* Set the character's starting position */
-		character.position.x = 50;
-		character.position.y = 50;
+	/* Add the character sprite to the screen */
+	gameContainer.addChild(character.sprite);
 
-		/* Add the character to the screen */
-		gameContainer.addChild(character);
-
+	
+	/* Add the event listeners for the button pushes */
+	document.addEventListener('keydown', function(event) {
 		
-		/* Add the event listeners for the button pushes */
-		document.addEventListener('keydown', function(event) {
-			
-			/* Left */
-			if(event.keyCode == 37) {
-				character.position.set(character.position.x-2, character.position.y);
-			}
-			/* Up */
-			if(event.keyCode == 38) {
-				character.position.set(character.position.x, character.position.y-2);
-			}
-			/* Right */
-			if(event.keyCode == 39) {
-				/* First make sure we aren't colliding with a wall */
-				alert(gameBoard[0][0])
-				alert("x: " + character.position.x + " y: " + character.position.y + " gameBoard: " + gameBoard[character.position.y][character.position.x+2]) 
-				if(gameBoard[character.position.y][character.position.x+2] == 0) {
-					character.position.set(character.position.x+2, character.position.y);
-				}
-			}
-			/* Down */
-			if(event.keyCode == 40) {
-				character.position.set(character.position.x, character.position.y+2);
-			}
-		});
-
-			
-
-	//	character.mousedown = character.touchstart = function(data) {
-
-	//		gameContainer.removeChild(this);
-	//		var character = PIXI.Sprite.fromFrame(1);
-	//		gameContainer.addChild(character);
-
-	//	}		
-
-
-		requestAnimFrame(animate);
-	}
-
-	/* This method gets called repeatedly by the Pixi driver */
-	function animate() {
-
-		/* Get the animation frame (required by Pixi) */
-		requestAnimFrame(animate);
-
-		/* Use a timeout for updating the Link sprite */
-		timeout++;
-		if((timeout%25) == 0) {	
-
-			/* Increment through all of the spite images of Link */
-			if(spriteNum > 3)
-				spriteNum = 0;
-
-			/* Get the current character and the one to switch with
-			   and set the new characters location to the same as the one
-			   we're replacing  */	
-			var orig = gameContainer.getChildAt(2);
-			character = PIXI.Sprite.fromFrame(spriteNum+1);
-
-			character.position.x = orig.position.x;
-			character.position.y = orig.position.y;
-
-			/* Now swap the two characters on the screen */
-			gameContainer.removeChild(orig);
-			gameContainer.addChild(character);
-			gameContainer.setChildIndex(character, 2);
-
-			spriteNum++;
+		/* Left */
+		if(event.keyCode == 37) {
+			character.translation(-2,0);
 		}
+		/* Up */
+		if(event.keyCode == 38) {
+			character.translation(0,-2);
+		}
+		/* Right */
+		if(event.keyCode == 39) {
+			character.translation(2,0);
+		}
+		/* Down */
+		if(event.keyCode == 40) {
+			character.translation(0,2);
+		}
+	});
+
+//	character.mousedown = character.touchstart = function(data) {
+
+//		gameContainer.removeChild(this);
+//		var character = PIXI.Sprite.fromFrame(1);
+//		gameContainer.addChild(character);
+
+//	}		
 
 
+	requestAnimFrame(animate);
+}
 
-		renderer.render(stage);
+/* This method gets called repeatedly by the Pixi driver */
+function animate() {
+
+	/* Get the animation frame (required by Pixi) */
+	requestAnimFrame(animate);
+
+	/* Use a timeout for updating the Link sprite */
+	timeout++;
+	if((timeout%25) == 0) {	
+
+		/* Increment through all of the spite images of Link */
+		if(spriteNum > 3)
+			spriteNum = 0;
+
+		/* Get the current character and the one to switch with
+		   and set the new characters location to the same as the one
+		   we're replacing  */	
+		var orig = gameContainer.getChildAt(2);
+		character.updateSprite(PIXI.Sprite.fromFrame(spriteNum+1));
+
+		character.setPosition(orig.position.x, orig.position.y);
+
+		/* Now swap the two characters on the screen */
+		gameContainer.removeChild(orig);
+		gameContainer.addChild(character.sprite);
+		gameContainer.setChildIndex(character.sprite, 2);
+
+		spriteNum++;
 	}
+
+
+
+	renderer.render(stage);
+}
 
 
 
