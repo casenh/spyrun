@@ -15,11 +15,6 @@ var GameBoard = function() {
 
 GameBoard.prototype.setWalls = function(levelMaps) {
 
-	/* Open the JSON file defining the walls */
-	//var levelMaps = JSON.parse(Levels);
-	//alert(levelMaps.Walls[0].start[0][0]);
-	//alert(levelMaps);
-
 	/* Add the walls to the graphics image */
 	var graphics = new PIXI.Graphics();
 	graphics.lineStyle(5, 0x000000);
@@ -50,6 +45,20 @@ GameBoard.prototype.setWalls = function(levelMaps) {
 	}
 
 	return graphics;
+};
+
+GameBoard.prototype.setCameras = function(levelMaps) {
+
+
+	/* Get the location from the levels file */
+	for(var i = 0; i < levelMaps.Cameras[0].position.length; i++) {
+		/* Load the camera image */
+		var camera = new Camera(PIXI.Sprite.fromImage("/images/camera.png"));
+		cameraList.push(camera);
+		camera.sprite.position.x = levelMaps.Cameras[0].position[i][0];
+		camera.sprite.position.y = levelMaps.Cameras[0].position[i][1];
+		gameContainer.addChild(camera.sprite);
+	}
 };
 
 GameBoard.prototype.detectCollision = function(x, y, width, height) {
