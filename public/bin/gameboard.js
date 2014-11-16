@@ -17,7 +17,7 @@ GameBoard.prototype.setWalls = function(levelMaps) {
 
 	/* Add the walls to the graphics image */
 	var graphics = new PIXI.Graphics();
-	graphics.lineStyle(12, 0x000000); //0x0F0F0F
+	graphics.lineStyle(12, 0x0F0F0F); //0x0F0F0F
 	for(var i = 0; i < levelMaps.Walls[0].start.length; i++) {
 		graphics.beginFill(0xFF0000);
 		graphics.moveTo(levelMaps.Walls[0].start[i][0], levelMaps.Walls[0].start[i][1]);
